@@ -17,38 +17,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.algamoneyapi.event.RecursoCriadoEvent;
-import com.example.algamoneyapi.model.Categoria;
-import com.example.algamoneyapi.repository.CategoriaRepository;
+import com.example.algamoneyapi.model.Pessoa;
+import com.example.algamoneyapi.repository.PessoaRepository;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaResource {
-	
+@RequestMapping("/pessoas")
+public class PessoaResource {
+
 	@Autowired
-	private CategoriaRepository categoriaRepository;
+	private PessoaRepository pessoaRepository;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
-
+	
 	@GetMapping
-	public List<Categoria> listar() {
-		return categoriaRepository.findAll();
+	public List<Pessoa> listar() {
+		return pessoaRepository.findAll();
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
-		Categoria categoriaSalva = categoriaRepository.save(categoria);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
+	public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response) {
+		Pessoa pessoaSalva = pessoaRepository.save(pessoa);
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, pessoaSalva.getCodigo()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalva);
 	}
 	
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
-		Categoria categoria = categoriaRepository.findById(codigo).orElse(null);
-		if (categoria == null) {
+	public ResponseEntity<Pessoa> buscarPeloCodigo(@PathVariable Long codigo) {
+		Pessoa pessoa = pessoaRepository.findById(codigo).orElse(null);
+		if (pessoa == null) {
 			return ResponseEntity.notFound().build();
 		} else {
-			return ResponseEntity.ok(categoria);
+			return ResponseEntity.ok(pessoa);
 		}
 	}
 }
