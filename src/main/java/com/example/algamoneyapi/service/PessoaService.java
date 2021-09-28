@@ -1,5 +1,7 @@
 package com.example.algamoneyapi.service;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -15,11 +17,22 @@ public class PessoaService {
 	private PessoaRepository pessoaRepository;
 	
 	public Pessoa atualizar(Long codigo, Pessoa pessoa) {
+		Pessoa pessoaSalva = buscarPessoaPeloCodigo(codigo);
+		BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
+		return pessoaRepository.save(pessoaSalva);
+	}
+
+	public void atualizarPropriedadeAtivo(Long codigo, @Valid Boolean ativo) {
+		Pessoa pessoaSalva = buscarPessoaPeloCodigo(codigo);
+		pessoaSalva.setAtivo(ativo);
+		pessoaRepository.save(pessoaSalva);
+	}
+	
+	private Pessoa buscarPessoaPeloCodigo(Long codigo) {
 		Pessoa pessoaSalva = pessoaRepository.findById(codigo).orElse(null);
 		if (pessoaSalva == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
-		return pessoaRepository.save(pessoaSalva);
+		return pessoaSalva;
 	}
 }
