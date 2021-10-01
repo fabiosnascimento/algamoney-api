@@ -24,6 +24,7 @@ import com.example.algamoney.api.repository.CategoriaRepository;
 @RequestMapping("/categorias")
 public class CategoriaResource {
 	
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
