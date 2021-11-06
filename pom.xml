@@ -16,7 +16,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
-		
+
 		<jasperreports.version>6.17.0</jasperreports.version>
 		<jasperreports-functions.version>6.17.0</jasperreports-functions.version>
 		<jasperreports-fonts.version>6.17.0</jasperreports-fonts.version>
@@ -33,7 +33,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
@@ -121,24 +121,29 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
 		</dependency>
-		
+
 		<!-- JasperReports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>${jasperreports.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports-functions</artifactId>
 			<version>${jasperreports-functions.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports-fonts</artifactId>
 			<version>${jasperreports-fonts.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -151,7 +156,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<repositories>
 		<repository>
 			<id>jr-ce-releases</id>
