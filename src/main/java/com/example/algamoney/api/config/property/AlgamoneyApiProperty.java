@@ -12,6 +12,12 @@ public class AlgamoneyApiProperty {
 	
 	private final Mail mail = new Mail();
 	
+	private final S3 s3 = new S3();
+	
+	public S3 getS3() {
+		return s3;
+	}
+	
 	public Mail getMail() {
 		return mail;
 	}
@@ -26,6 +32,29 @@ public class AlgamoneyApiProperty {
 
 	public Seguranca getSeguranca() {
 		return seguranca;
+	}
+	
+	public static class S3 {
+		
+		private String accessKeyId;
+		
+		private String secretAccessKeyId;
+
+		public String getAccessKeyId() {
+			return accessKeyId;
+		}
+
+		public void setAccessKeyId(String accessKeyId) {
+			this.accessKeyId = accessKeyId;
+		}
+
+		public String getSecretAccessKeyId() {
+			return secretAccessKeyId;
+		}
+
+		public void setSecretAccessKeyId(String secretAccessKeyId) {
+			this.secretAccessKeyId = secretAccessKeyId;
+		}
 	}
 
 	public static class Seguranca {
