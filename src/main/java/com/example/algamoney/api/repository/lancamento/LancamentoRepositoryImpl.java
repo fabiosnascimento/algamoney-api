@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import com.example.algamoney.api.dto.LancamentoEstatisticaCategoria;
 import com.example.algamoney.api.dto.LancamentoEstatisticaDia;
@@ -75,7 +75,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 			Root<Lancamento> root) {
 		List<Predicate> predicates = new ArrayList<>();
 
-		if (!ObjectUtils.isEmpty(lancamentoFilter.getDescricao())) {
+		if (!StringUtils.isEmpty(lancamentoFilter.getDescricao())) {
 			predicates.add(builder.like(
 					builder.lower(root.get(Lancamento_.descricao)), "%" + lancamentoFilter.getDescricao().toLowerCase() + "%"));
 		}

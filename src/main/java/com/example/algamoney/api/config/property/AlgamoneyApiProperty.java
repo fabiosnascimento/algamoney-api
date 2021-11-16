@@ -1,7 +1,6 @@
 package com.example.algamoney.api.config.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 @ConfigurationProperties("algamoney")
 public class AlgamoneyApiProperty {
