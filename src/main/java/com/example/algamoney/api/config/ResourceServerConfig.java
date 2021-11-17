@@ -25,16 +25,20 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
-@Configuration
 @Profile("oauth-security")
+@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig {
 
 	@Bean
 	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/categorias").permitAll().anyRequest().authenticated().and().csrf()
-				.disable().oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
+		http.authorizeRequests()
+			.antMatchers("/categorias").permitAll()
+			.anyRequest().authenticated()
+		.and()
+			.csrf().disable()
+			.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
 		return http.formLogin(Customizer.withDefaults()).build();
 	}
 
