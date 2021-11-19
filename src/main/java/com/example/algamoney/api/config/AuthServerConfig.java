@@ -124,7 +124,7 @@ public class AuthServerConfig {
 	
 	@Bean
 	public JWKSet jwkSet() throws Exception {
-		File file = new ClassPathResource("keystore/algamoney.jks").getFile();
+		File file = new ClassPathResource("/algamoney-api/src/main/resources/keystore/algamoney.jks").getFile();
 		
 		KeyStore keyStore  = KeyStore.Builder.newInstance(file,
 				new KeyStore.PasswordProtection("123456".toCharArray())
