@@ -41,7 +41,7 @@ public class AlgamoneyApiProperty {
 		
 		private String secretAccessKeyId;
 		
-		private String bucket;
+		private String bucket = "aw-algamoneyapi-arquivos";
 
 		public String getBucket() {
 			return bucket;
