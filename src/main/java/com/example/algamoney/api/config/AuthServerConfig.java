@@ -1,6 +1,6 @@
 package com.example.algamoney.api.config;
 
-import java.io.File;
+import java.io.InputStream;
 import java.security.KeyStore;
 import java.time.Duration;
 import java.util.Arrays;
@@ -124,11 +124,10 @@ public class AuthServerConfig {
 	
 	@Bean
 	public JWKSet jwkSet() throws Exception {
-		File file = new ClassPathResource("/algamoney-api/src/main/resources/keystore/algamoney.jks").getFile();
+		final InputStream inputStream = new ClassPathResource("keystore/algamoney.jks").getInputStream();
 		
-		KeyStore keyStore  = KeyStore.Builder.newInstance(file,
-				new KeyStore.PasswordProtection("123456".toCharArray())
-				).getKeyStore();
+		final KeyStore keyStore  = KeyStore.getInstance("JKS");
+		keyStore.load(inputStream, "123456".toCharArray());
 		
 		RSAKey rsaKey = RSAKey.load(keyStore, "algamoney", "123456".toCharArray());
 		
